@@ -38,9 +38,10 @@ def main():
     for d in (H / "Downloads", H / "Desktop"):
         zips = sorted(d.glob("takeout-*.zip")) if d.is_dir() else []
         if zips:
-            gb = sum(z.stat().st_size for z in zips) / 1e9
-            found.append((f"Google Takeout: {len(zips)} קובצי zip ב-{d.name} ({gb:.1f}GB)", f'--folder "{d}"',
-                          f"צריך בערך {gb:.0f}GB פנויים לחילוץ התמונות"))
+            size = sum(z.stat().st_size for z in zips)
+            human = f"{size / 1e9:.1f}GB" if size >= 1e9 else f"{size / 1e6:.0f}MB"
+            found.append((f"Google Takeout: {len(zips)} קובצי zip ב-{d.name} ({human})", f'--folder "{d}"',
+                          f"לא צריך לחלץ. צריך בערך {human} פנויים, כי הסקיל מחלץ רק את התמונות"))
         for t in (d / "Takeout",) if d.is_dir() else ():
             if t.is_dir():
                 found.append((f"תיקיית Takeout שחולצה ({count_images(t)} תמונות)", f'--folder "{t}"', ""))
