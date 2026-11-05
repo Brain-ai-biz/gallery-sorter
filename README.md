@@ -49,7 +49,7 @@ scripts/organize.py      תוכנית, ואחרי אישור העתקה לתיק
 studio/studio.html       הממשק
 ```
 
-מדריך מלא: https://hub.brainai.co.il/gallery-sorter/
+מדריך מלא: https://brainai.co.il/guides/gallery-sorter-guide/
 
 ---
 
